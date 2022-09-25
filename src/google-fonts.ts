@@ -6,6 +6,7 @@ export interface GoogleFontFamily {
   defer?: boolean
 }
 export interface GoogleFonts {
+  baseUrl?: string
   families: (string | GoogleFontFamily)[]
   text?: string
   display?: 'auto' | 'block' | 'swap' | 'fallback' | 'optional'
@@ -24,6 +25,7 @@ function injectFonts({
   preconnect = true,
   display = 'swap',
   injectTo = 'head-prepend',
+  baseUrl = GoogleFontsBase,
 }: GoogleFonts): HtmlTagDescriptor[] {
   const specs: string[] = []
   const deferedSpecs: string[] = []
@@ -84,7 +86,7 @@ function injectFonts({
   // defer loading font-faces definitions
   // @see https://web.dev/optimize-lcp/#defer-non-critical-css
   if (deferedSpecs.length > 0) {
-    let href = `${GoogleFontsBase}?family=${deferedSpecs.join('&family=')}`
+    let href = `${baseUrl}?family=${deferedSpecs.join('&family=')}`
 
     if (typeof display === 'string' && display !== 'auto')
       href += `&display=${display}`
@@ -105,7 +107,7 @@ function injectFonts({
 
   // load critical fonts
   if (specs.length > 0) {
-    let href = `${GoogleFontsBase}?family=${specs.join('&family=')}`
+    let href = `${baseUrl}?family=${specs.join('&family=')}`
 
     if (typeof display === 'string' && display !== 'auto')
       href += `&display=${display}`

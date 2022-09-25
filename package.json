@@ -1,13 +1,17 @@
 {
-  "name": "vite-plugin-fonts",
+  "name": "@dolu/vite-plugin-fonts",
   "version": "0.6.0",
   "description": "Webfont loader for vite",
   "author": "stafyniaksacha",
   "license": "MIT",
-  "repository": "stafyniaksacha/vite-plugin-fonts",
+  "repository": "dolu89/vite-plugin-fonts",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "dist"
   ],
